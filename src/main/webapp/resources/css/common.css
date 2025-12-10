@@ -1,0 +1,23 @@
+.btn-wrapper {
+	padding-top: 2rem;
+}
+
+.page-links > a {
+	display: inline-block;
+	width: 3rem;
+	text-align: center;
+}
+#balanceChart {
+	width: 100%;
+	height: 500px;
+}
+
+.pieChart {
+	width: 100%;
+	height: 300px
+}
+
+#adminContainer {
+	height: 600px;
+	width: 100%;
+}

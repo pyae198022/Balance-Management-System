@@ -1,0 +1,44 @@
+package com.spring.balance.model.entity;
+
+import java.time.LocalDate;
+
+import com.spring.balance.model.entity.consts.Gender;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@Entity
+@EqualsAndHashCode(callSuper = false)
+public class Member extends AbstractEntity{
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	@Column(nullable = false)
+	private String name;
+	@Column(nullable = false)
+	private String email;
+	
+	private String phone;
+	private LocalDate dob;
+	private Gender gender;
+	private String profileImage;
+	
+	@OneToOne(optional = false)
+	private Account account;
+	
+	@ManyToOne
+	private TownShip township;
+	private String address;
+	
+	@OneToOne(mappedBy = "member")
+	private MemberActivity activity;
+}
