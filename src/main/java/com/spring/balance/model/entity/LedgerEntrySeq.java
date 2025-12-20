@@ -1,5 +1,6 @@
 package com.spring.balance.model.entity;
 
+import com.spring.balance.model.entity.embaddables.LedgerEntryPK;
 import com.spring.balance.model.entity.embaddables.LedgerEntrySeqPK;
 
 import jakarta.persistence.Column;
@@ -16,5 +17,10 @@ public class LedgerEntrySeq {
 	
 	@Column(nullable = false)
 	private int seqNumber;
+
+	public LedgerEntryPK next() {
+		seqNumber += 1;
+		return LedgerEntryPK.from(this);
+	}
 	
 }

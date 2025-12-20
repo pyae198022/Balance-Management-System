@@ -15,7 +15,6 @@ import com.spring.balance.controller.member.dto.LedgerForm;
 import com.spring.balance.controller.member.dto.LedgerSearch;
 import com.spring.balance.model.entity.consts.BalanceType;
 import com.spring.balance.model.repo.service.LedgerManagementService;
-import com.spring.balance.utils.EntityOperation;
 
 import lombok.RequiredArgsConstructor;
 

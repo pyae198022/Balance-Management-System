@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import com.spring.balance.model.entity.LedgerEntryItem;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -12,10 +13,12 @@ public class LedgerEntryFormItem {
 
 	@NotBlank(message = "Please enter item name")
 	private String itemName;
-	@NotBlank(message = "Please enter unit price")
-	private BigDecimal unitPrice;
-	@NotBlank(message = "Please enter quantity")
-	private Integer quantity;
+	@NotNull(message = "Please enter unit price")
+	private BigDecimal unitPrice = BigDecimal.ZERO;
+	@NotNull(message = "Please enter quantity")
+	private Integer quantity = 0;
+	
+	private boolean deleted;
 	
 	public static LedgerEntryFormItem from(LedgerEntryItem entity) {
 		var item = new LedgerEntryFormItem();
@@ -23,7 +26,6 @@ public class LedgerEntryFormItem {
 		item.setItemName(entity.getItem());
 		item.setUnitPrice(entity.getUnitPrice());
 		item.setQuantity(entity.getQuantity());
-		
 		
 		return item;
 	}

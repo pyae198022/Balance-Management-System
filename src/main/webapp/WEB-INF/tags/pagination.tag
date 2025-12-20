@@ -20,18 +20,23 @@
 
 			<!-- Page Links -->
 			<div class="d-flex page-links">
-				<a href="#" data-page-number="0"
-					class="btn btn-outline-primary me-1"> <i class="bi-arrow-left"></i>
-				</a>
-
-				<c:forEach var="item" items="${pageResult.pageLinks }">
-					<a href="#" data-page-number="${item }"
-						class="btn btn-outline-primary me-1"> ${item + 1} </a>
-				</c:forEach>
-
-				<a href="#" data-page-number="${pageResult.totalPage - 1 }"
-					class="btn btn-outline-primary me-1"> <i class="bi-arrow-right"></i>
-				</a>
+				
+				<c:if test="${not empty pageResult.pageLinks }">
+					<a href="#" data-page-number="0"
+						class="btn btn-outline-primary me-1"> <i class="bi-arrow-left"></i>
+					</a>
+				
+					<c:forEach var="item" items="${pageResult.pageLinks }">
+						<a href="#" data-page-number="${item }"
+							class="btn btn-outline-primary me-1"> ${item + 1} </a>
+					</c:forEach>
+					
+					
+					<a href="#" data-page-number="${pageResult.totalPage - 1 }"
+						class="btn btn-outline-primary me-1"> <i class="bi-arrow-right"></i>
+					</a>
+				</c:if>
+				
 			</div>
 		</div>
 

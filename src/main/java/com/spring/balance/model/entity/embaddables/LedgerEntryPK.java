@@ -3,6 +3,8 @@ package com.spring.balance.model.entity.embaddables;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import com.spring.balance.model.entity.LedgerEntrySeq;
+
 import jakarta.persistence.Embeddable;
 import lombok.Data;
 
@@ -18,7 +20,7 @@ public class LedgerEntryPK {
 	
 	public String getCode() {
 		
-		return "%s%03D".formatted(issueDate.format(DATE_FORMATTER));
+		return "%s%03d".formatted(issueDate.format(DATE_FORMATTER), seqNumber);
 	}
 
 	public static LedgerEntryPK parse(String id, Long memberId) {
@@ -31,6 +33,14 @@ public class LedgerEntryPK {
 		pk.setIssueDate(issueDate);
 		pk.setSeqNumber(seqNumber);
 		
+		return pk;
+	}
+
+	public static LedgerEntryPK from(LedgerEntrySeq ledgerEntrySeq) {
+		var pk = new LedgerEntryPK();
+		pk.setMemberId(ledgerEntrySeq.getId().getMemberId());
+		pk.setIssueDate(ledgerEntrySeq.getId().getIssueDate());
+		pk.setSeqNumber(ledgerEntrySeq.getSeqNumber());
 		return pk;
 	}
 }

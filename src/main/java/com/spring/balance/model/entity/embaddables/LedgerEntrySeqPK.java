@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LedgerEntrySeqPK {
 
-
 	private long memberId;
 	private LocalDate issueDate;
 }

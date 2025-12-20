@@ -38,4 +38,5 @@ public class LedgerEntry {
 	@OneToMany(mappedBy = "entry")
 	private List<LedgerEntryItem> items;
 	
+	
 }

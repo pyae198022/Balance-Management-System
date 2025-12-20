@@ -7,10 +7,10 @@
 <app:layout-member title="Balances">
 
 	<div class="d-flex justify-content-between align-items-start">
-		<app:page-title title="Incomes Details" />
+		<app:page-title title="${details.type().name() } Details" />
 		
-		<c:url var="editUrl" value="${root }/member/entry/incomes/edit">
-			<c:param name="id" value="2025"></c:param>
+		<c:url var="editUrl" value="${root }/member/entry/${details.type().name().toLowerCase() }/edit">
+			<c:param name="id" value="${details.code() }"></c:param>
 		</c:url>
 		<a href="${ editUrl}" class="btn btn-danger">
 			<i class="bi-pencil"></i> Edit Entry
@@ -19,7 +19,6 @@
 
 
 	<div class="row">
-	
 	
 		<!-- Entry Items -->
 		<div class="col">
@@ -40,25 +39,20 @@
 							</tr>
 						</thead>
 						<tbody>
+						
+						<c:forEach var="item" items="${details.items() }" varStatus="sts">
 							<tr>
-								<td>1</td>
-								<td>Print Paper</td>
-								<td class="text-end">35,000</td>
-								<td class="text-end">2</td>
-								<td class="text-end">70,000</td>
+								<td>${sts.index + 1 }</td>
+								<td>${item.itemName() }</td>
+								<td class="text-end">${item.unitPrice() }</td>
+								<td class="text-end">${item.quantity() }</td>
+								<td class="text-end">${item.total }</td>
 							</tr>
-
-							<tr>
-								<td>2</td>
-								<td>Maintenance Fees</td>
-								<td class="text-end">30,000</td>
-								<td class="text-end">2</td>
-								<td class="text-end">60,000</td>
-							</tr>
-
+						</c:forEach>
+							
 							<tr>
 								<td colspan="4">All Total</td>
-								<td class="text-end">30,000</td>
+								<td class="text-end">${details.total }</td>
 
 							</tr>
 						</tbody>
@@ -78,27 +72,27 @@
 					<div class="list-group list-group-flush">
 						<div class="list-group-item ">
 							<div>Code</div>
-							<div>230423-001</div>
+							<div>${details.code() }</div>
 						</div>
 
 						<div class="list-group-item ">
 							<div>Ledger</div>
-							<div>Service Charge</div>
+							<div>${details.ledgerName() }</div>
 						</div>
 
 						<div class="list-group-item ">
 							<div>Amount</div>
-							<div>100,000 MMK</div>
+							<div>${details.amount() } MMK</div>
 						</div>
 
 						<div class="list-group-item ">
 							<div>Issue At</div>
-							<div>2025-02-10 10:00</div>
+							<div>${dateTime.formatDateTime(details.issuteAt()) }</div>
 						</div>
 
 						<div class="list-group-item ">
 							<div>Particular</div>
-							<div>Maintenance Fees For POS</div>
+							<div>${details.particular() }</div>
 						</div>
 					</div>
 				</div>

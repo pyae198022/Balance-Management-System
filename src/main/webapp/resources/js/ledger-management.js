@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		document.getElementById('editFormTitle').innerText = 'Add New Category'
 		
-		document.getElementById("id").value = undefined
+		document.getElementById("id").value = null
 		document.getElementById("type").value = ''
 		document.getElementById("name").value = ''
 		document.getElementById("status").checked = false
