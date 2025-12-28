@@ -90,4 +90,14 @@ public class MemberManagementService {
 		};
 	}
 
+	public Long findMemberCountForlastMonth(LocalDate dateFrom) {
+		
+		if(null == dateFrom) {
+			
+		}
+		return null;
+	}
+	
+	
+
 }

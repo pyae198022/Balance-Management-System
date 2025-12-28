@@ -5,14 +5,14 @@
 <%@ attribute name="icon" required="false" %>
 <%@ attribute name="color" required="false" %>
 
-<div class="card ${color }">
+<div class="card ${color}">
 	<div class="card-body">
 		<div class="text-end">
-			<span>${title }</span>
+			<span>${title}</span>
 		</div>
-		<h3 class="d-flex justify-content-between">
-			<i class="${icon }"></i> <span>${value } MMK</span>
-		</h3>
-
+		<h4 class="d-flex justify-content-between">
+			<i class="${icon}"></i> 
+			<span id="${title.toLowerCase()}">${value}</span>
+		</h4>
 	</div>
 </div>

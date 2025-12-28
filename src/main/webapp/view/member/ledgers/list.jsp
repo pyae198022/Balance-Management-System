@@ -51,9 +51,9 @@
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach var="item" items="${result.contents() }">
+		<c:forEach var="item" items="${result.contents() }" varStatus="sts">
 			<tr>
-				<td>${item.id() }</td>
+				<td>${sts.index + 1 }</td>
 				<td>${item.type() }</td>
 				<td>${item.name() }</td>
 				<td>${item.status() eq true ? 'Deleted' : 'Active' }</td>

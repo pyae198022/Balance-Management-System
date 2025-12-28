@@ -8,9 +8,9 @@
 <app:layout-member title="${type.name().toUpperCase() }">
 
 	<div class="d-flex justify-content-between align-items-start">
-		<app:page-title title="${form.id eq null ? 'Add New' : 'Edit' } ${type.name() }" />
+		<app:page-title
+			title="${form.id eq null ? 'Add New' : 'Edit' } ${type.name() }" />
 	</div>
-
 	<sf:form id="editForm" action="${root }/member/entry/${urlType}/save"
 		modelAttribute="form" method="post" class="row">
 
@@ -29,7 +29,8 @@
 						<sf:select path="ledgerId" class="form-select">
 							<option value="">Select Ledger</option>
 							<c:forEach var="item" items="${ledgers }">
-								<option value="${item.id() }" ${item.id() eq form.ledgerId ? 'selected' : '' }>${item.name() }</option>
+								<option value="${item.id() }"
+									${item.id() eq form.ledgerId ? 'selected' : '' }>${item.name() }</option>
 							</c:forEach>
 						</sf:select>
 						<sf:errors path="ledgerId" cssClass="text-secondary"></sf:errors>
@@ -123,6 +124,6 @@
 			</div>
 		</div>
 	</sf:form>
-	
+
 	<script src="${root }/resources/js/ledger-entry-edit.js"></script>
 </app:layout-member>

@@ -88,17 +88,6 @@ public class MemberLedgerEntryController {
 	@PostMapping("item/remove")
 	String removeItem(@ModelAttribute(name = "form") LedgerEntryForm entryForm) {
 		
-		var removeItems = entryForm.getItems()
-				.stream()
-				.filter(a -> !a.isDeleted()).toList();
-		
-		removeItems = new ArrayList<>(removeItems);
-		
-		if(removeItems.isEmpty()) {
-			removeItems.add(new LedgerEntryFormItem());
-		}
-		
-		entryForm.setItems(removeItems);
 		return "member/entries/edit";
 	}
 	

@@ -2,23 +2,49 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="app" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
 <app:layout-member title="Member Home">
 
-	<div class="d-flex justify-content-between align-item-start">
+	<div class="d-flex justify-content-between align-items-start">
 		<app:page-title title="Member Home" />
+		
+		<div class="btn-group">
+			
+			<c:url var="summaryMonthly" value="${root}/member/chart/summary">
+				<c:param name="type" value="Monthly" />
+			</c:url>
+			<c:url var="balanceMonthly" value="${root}/member/chart/balance">
+				<c:param name="type" value="Monthly" />
+			</c:url>
+			<c:url var="ledgerMonthly" value="${root}/member/chart/ledger">
+				<c:param name="type" value="Monthly" />
+			</c:url>
+			
+			<input type="radio" name="display" class="btn-check" checked id="monthly"
+			 	data-summary-url="${summaryMonthly}" 
+			 	data-balance-url="${balanceMonthly}" 
+			 	data-ledger-url="${ledgerMonthly}" />
+			<label for="monthly" class="btn btn-outline-primary">Monthly</label>
+			
+			<c:url var="summaryYearly" value="${root}/member/chart/summary">
+				<c:param name="type" value="Yearly" />
+			</c:url>
+			<c:url var="balanceYearly" value="${root}/member/chart/balance">
+				<c:param name="type" value="Yearly" />
+			</c:url>
+			<c:url var="ledgerYearly" value="${root}/member/chart/ledger">
+				<c:param name="type" value="Yearly" />
+			</c:url>
 
-		<div class="">
-			<div class="btn-group">
-				<input type="radio" name="display" class="btn-check"
-					checked="checked" value="" id="monthly" /> <label for="monthly"
-					class="btn btn-outline-primary">Monthly</label> <input type="radio"
-					name="display" class="btn-check" id="yearly" /> <label
-					for="yearly" class="btn btn-outline-primary">Yearly</label>
-			</div>
+			<input type="radio" name="display" class="btn-check" id="yearly" 
+				data-summary-url="${summaryYearly}"
+				data-balance-url="${balanceYearly}" 
+				data-ledger-url="${ledgerYearly}"  />
+			<label for="yearly" class="btn btn-outline-primary">Yearly</label>
 		</div>
 	</div>
-
+	
 	<div class="row">
 		<div class="col-3">
 			<!-- Profile  -->
@@ -88,34 +114,28 @@
 			<!-- Summary -->
 			<div class="row">
 				<div class="col">
-					<app:summary-info title="Expenses" value="100,000" icon="bi-cart"
-						color="text-bg-danger">
-					</app:summary-info>
+					<app:summary-info title="Expenses" value="0" icon="bi-cart" color="text-bg-danger" />
 				</div>
 				<div class="col">
-					<app:summary-info title="Incomes" value="500,000" icon="bi-flag"
-						color="text-bg-warning">
-					</app:summary-info>
+					<app:summary-info title="Incomes" value="0" icon="bi-flag" color="text-bg-warning" />
 				</div>
 				<div class="col">
-					<app:summary-info title="Balances" value="400,000"
-						icon="bi-bar-chart" color="text-bg-primary">
-					</app:summary-info>
+					<app:summary-info title="Balances" value="0" icon="bi-bar-chart" color="text-bg-primary" />
 				</div>
 			</div>
-
+			
 			<!-- Balance Bar Charts -->
 			<div class="card mt-4">
 				<div class="card-body">
 					<h5 class="card-title">
 						<i class="bi-bar-chart"></i> Balances
 					</h5>
-
-					<div id="balanceChart"></div>
+					
+					<div id="blanceChart"></div>
 				</div>
 			</div>
-
-			<div class="row m-3">
+			
+			<div class="row mt-4">
 				<!-- Expenses Pie Chart -->
 				<div class="col">
 					<div class="card">
@@ -123,32 +143,33 @@
 							<h5 class="card-title">
 								<i class="bi-cart"></i> Expenses
 							</h5>
-
-							<div id="expensesChart" class="pieChart"></div>
+							
+							<div id="expensesChart" class="pieChartRoot"></div>
 						</div>
 					</div>
 				</div>
-
+				
 				<!-- Incomes Pie Chart -->
 				<div class="col">
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">
-								<i class="bi-cart"></i> Incomes
+								<i class="bi-flag"></i> Incomes
 							</h5>
-
-							<div id="incomesChart" class="pieChart"></div>
+							
+							<div id="incomesChart" class="pieChartRoot"></div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
-
+	
+	
 	<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
 	<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
 	<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
 	<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
-	<script src="${root }/resources/js/member-home.js"></script>
+	<script src="${root}/resources/js/member-home.js"></script>
+		
 </app:layout-member>
